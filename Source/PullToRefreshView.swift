@@ -261,6 +261,11 @@ open class PullToRefreshView: UIView {
     
     fileprivate func arrowRotation() {
         UIView.animate(withDuration: 0.2, delay: 0, options:[], animations: {
+            if #available(iOS 10.0, *) {
+                let generator = UIImpactFeedbackGenerator(style: .light)
+                generator.impactOccurred()
+            }
+
             // -0.0000001 for the rotation direction control
             self.arrow.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi-0.0000001))
         }, completion:nil)
