@@ -159,7 +159,12 @@ open class PullToRefreshView: UIView {
         }
         
         // Pulling State Check
-        let offsetY = scrollView.contentOffset.y
+        var offsetY = scrollView.contentOffset.y
+        if self.pull {
+            offsetY += scrollView.contentInset.top
+        } else {
+            offsetY += scrollView.contentInset.bottom
+        }
         
         // Alpha set
         if PullToRefreshConst.alpha {
